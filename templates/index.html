@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>toDo App</title>
+</head>
+<body>
+
+<h1>ToDo List</h1>
+
+<form method="post" action="/add">
+    <input type="text" name="title" placeholder="Write task..." required>
+    <input type="submit" value="Add">
+</form>
+
+<ul>
+{% for todo in todos %}
+    <li style="{{ 'color: red;' if not todo.done else 'color: green;' }}; font-size: 20px; margin: 10px 0px">
+        {{ todo.title }}
+        <form style="display: inline;" method="post" action="/delete/{{ todo.id }}">
+            <button type="submit">Delete</button>
+        </form>
+        <form style="display: inline;" method="post" action="/toggle/{{ todo.id }}">
+            <button type="submit">Toogle</button>
+        </form>
+    </li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
